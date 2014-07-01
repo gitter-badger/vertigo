@@ -10,6 +10,7 @@ import (
 	"html"
 	"html/template"
 	"log"
+	"os"
 	"strings"
 	"time"
 )
@@ -35,7 +36,7 @@ func main() {
 	}
 
 	m := martini.Classic()
-	store := sessions.NewCookieStore([]byte("CZyH@Xi@Rpb6EHVJvWLlp)trM#TfGIs19NEo)P7"))
+	store := sessions.NewCookieStore([]byte(os.Getenv("vertigo_hash")))
 	m.Use(sessions.Sessions("user", store))
 	m.Use(middleware())
 	m.Use(strict.Strict)
