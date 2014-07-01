@@ -25,8 +25,8 @@ func ReadFeed(w http.ResponseWriter, res render.Render, db *r.Session, r *http.R
 
 	feed := &feeds.Feed{
 		Title:       hostname,
-		Link:        &feeds.Link{Href: "http://" + hostname},
-		Description: "A blog run by Vertigo",
+		Link:        &feeds.Link{Href: "http://juusohaavisto.com"},
+		Description: "Blog of a computer whisperer.",
 	}
 
 	var post Post
@@ -50,7 +50,7 @@ func ReadFeed(w http.ResponseWriter, res render.Render, db *r.Session, r *http.R
 		// However, the package panics if too few values are exported, so that will do.
 		item := &feeds.Item{
 			Title:       post.Title,
-			Link:        &feeds.Link{Href: "http://" + hostname + "/" + post.Slug},
+			Link:        &feeds.Link{Href: "http://juusohaavisto.com/" + post.Slug},
 			Description: post.Excerpt,
 			Author:      &feeds.Author{person.Name, person.Email},
 			Created:     time.Unix(post.Date, 0),

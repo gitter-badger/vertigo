@@ -10,6 +10,7 @@ import (
 	"html"
 	"html/template"
 	"log"
+	"strings"
 	"time"
 )
 
@@ -21,23 +22,20 @@ func main() {
 		"unescape": func(s string) template.HTML {
 			return template.HTML(html.UnescapeString(s))
 		},
-		// Title renders post name as a page title.
-		// Otherwise it defaults to Vertigo.
+		"time": func(t int64) string {
+			return strings.Split(time.Unix(t, 0).String(), " ")[0]
+		},
 		"title": func(t interface{}) string {
 			post, exists := t.(Post)
 			if exists {
 				return post.Title
 			}
-			return "Vertigo"
-		},
-		// Date helper returns unix date as more readable one in string format.
-		"date": func(d int64) string {
-			return time.Unix(d, 0).String()
+			return "Juuso Haavisto"
 		},
 	}
 
 	m := martini.Classic()
-	store := sessions.NewCookieStore([]byte("heartbleed"))
+	store := sessions.NewCookieStore([]byte("CZyH@Xi@Rpb6EHVJvWLlp)trM#TfGIs19NEo)P7"))
 	m.Use(sessions.Sessions("user", store))
 	m.Use(middleware())
 	m.Use(strict.Strict)
@@ -80,10 +78,10 @@ func main() {
 		r.Get("", ProtectedPage, ReadUser)
 		//r.Post("/delete", strict.ContentType("application/x-www-form-urlencoded"), ProtectedPage, binding.Form(Person{}), DeleteUser)
 
-		r.Get("/register", SessionRedirect, func(res render.Render) {
-			res.HTML(200, "user/register", nil)
-		})
-		r.Post("/register", strict.ContentType("application/x-www-form-urlencoded"), binding.Form(Person{}), binding.ErrorHandler, CreateUser)
+		//r.Get("/register", SessionRedirect, func(res render.Render) {
+		//	res.HTML(200, "user/register", nil)
+		//})
+		//r.Post("/register", strict.ContentType("application/x-www-form-urlencoded"), binding.Form(Person{}), binding.ErrorHandler, CreateUser)
 
 		r.Get("/login", SessionRedirect, func(res render.Render) {
 			res.HTML(200, "user/login", nil)
@@ -101,9 +99,9 @@ func main() {
 		r.Get("/users", ReadUsers)
 		r.Get("/user/:id", ReadUser)
 		//r.Delete("/user", DeleteUser)
-		r.Post("/user", strict.ContentType("application/json"), binding.Json(Person{}), binding.ErrorHandler, CreateUser)
-		r.Post("/user/login", strict.ContentType("application/json"), binding.Json(Person{}), binding.ErrorHandler, LoginUser)
-		r.Get("/user/logout", LogoutUser)
+		//r.Post("/user", strict.ContentType("application/json"), binding.Json(Person{}), binding.ErrorHandler, CreateUser)
+		//r.Post("/user/login", strict.ContentType("application/json"), binding.Json(Person{}), binding.ErrorHandler, LoginUser)
+		//r.Get("/user/logout", LogoutUser)
 
 		r.Get("/posts", ReadPosts)
 		r.Get("/post/:title", ReadPost)

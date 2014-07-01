@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	  <meta charset="utf-8">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
-	  <link rel="stylesheet" href="/css/style.css">
-    <link href='http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic&amp;subset=latin,latin-ext,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css'>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{title .}}</title>
-  </head>
+		<meta charset="utf-8">
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
+      <link rel="stylesheet" href="/css/bootstrap.min.css">
+      <link rel="stylesheet" href="/css/style.css">
+      <link href='http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic&amp;subset=latin,latin-ext,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css'>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    	<title>{{title .}}</title>
+  	</head>
   <body>
-    <header>
-    	<a class="homepage-link" href="/">Home</a>
-    </header>
-    {{ yield }}
+    <div class="row">
+      <div class="col-md-2 aside">
+        <h3><a href="/">Juuso Haavisto</a></h3>
+        <hr>
+        <a href="https://twitter.com/9uuso">@9uuso »</a>
+        <br>
+        <a href="/post/about-me">About me »</a>
+        <hr>
+        <form class="search" method="post" action="/post/search">
+          <input class="form-control" name="query" type="search" spellcheck="false" required="required" placeholder="search ...">
+        </form>
+        <hr>
+        <small class="vertigo">Powered by <a href="https://github.com/9uuso/vertigo">Vertigo</a></small>
+      </div>
+      <div class="col-md-7 content">
+        {{ yield }}
+      </div>     
+    </div>
   </body>
 </html>

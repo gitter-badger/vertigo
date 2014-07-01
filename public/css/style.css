@@ -1,8 +1,82 @@
 body {
-	margin: auto;
 	padding: 1em;
 	font-family: 'PT Serif', serif;
-	max-width: 960px;
+	background: url(/images/background.png);
+	color: #444;
+	line-height: 1.5;
+	font-size: 18px;
+}
+
+h1 {
+	margin-bottom: 1em;
+}
+
+h1, h2, h3 {
+	font-family: sans-serif;
+	font-weight: 900;
+	color: #222;
+	line-height: 1.1;
+}
+
+.row {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.aside {
+	font-family: sans-serif;
+	margin-bottom: 3em;
+}
+
+.aside li {
+	list-style: none;
+}
+
+.aside a {
+	color: rgb(69, 75, 80);
+}
+
+.content {
+	padding-top: 1em;
+	background: white;
+	padding-bottom: 1em;
+}
+
+article {
+	margin: 1em;
+}
+
+main {
+	background-color: white;
+	padding-left: 1em;
+	padding-right: 1em;
+	border: 1px solid #ccc;
+	border-top: 0;
+}
+
+.stripe {
+	width: 100%;
+	height: .3em;
+	background-color: #377EF0;
+}
+
+a {
+	color: #295EB4;
+}
+
+a:hover {
+	opacity: .8;
+}
+
+small.vertigo {
+	margin-top: .5em;
+	float: right;
+	margin-bottom: .5em;
+	opacity: .3;
+}
+
+small.vertigo:hover {
+	opacity: 1;
 }
 
 @media only screen and (max-width: 400px) {

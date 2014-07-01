@@ -1,15 +1,9 @@
-fieldset {
-	border: 0;
-}
-
-a.homepage-link, fieldset.search {
-	display: none;
-}
-
 input {
 	width: 100%;
-	font-size: 1.5em;
 	border: 0;
+}
+
+
 }
 
 textarea {
@@ -23,9 +17,4 @@ textarea {
 
 *:focus {
 	outline: 0;
-}
-
-button {
-	float: right;
-	margin-bottom: 1em;
 }

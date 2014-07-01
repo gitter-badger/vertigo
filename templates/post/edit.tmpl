@@ -1,12 +1,8 @@
 <link rel="stylesheet" href="/css/writing.css">
 <form method="post" name="new" onsubmit="copy()">
-    <fieldset>
-
-        <h1><input id="title" spellcheck="false" autocomplete="off" name="title" value="{{.Title}}"></h1>
-        <textarea name="content" style="display: none"></textarea>
-    	<div id="text" contenteditable="true">{{unescape .Content}}</div>
-
-    </fieldset>
+    <h1><input id="title" autocomplete="off" name="title" value="{{.Title}}"></h1>
+    <textarea name="content" style="display: none"></textarea>
+    <div id="text" contenteditable="true">{{unescape .Content}}</div>
 </form>
 <script type="text/javascript">
 
