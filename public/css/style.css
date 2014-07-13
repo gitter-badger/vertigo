@@ -7,6 +7,10 @@ body {
 	font-size: 18px;
 }
 
+.row > div {
+	padding: 1em;
+}
+
 h1 {
 	margin-bottom: 1em;
 }
@@ -24,6 +28,8 @@ h1, h2, h3 {
 }
 
 .aside {
+	padding-left: 0;
+	padding-right: 0;
 	font-family: sans-serif;
 	margin-bottom: 3em;
 }
