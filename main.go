@@ -1,25 +1,16 @@
 package main
 
 import (
-	"html"
-	"html/template"
-	"os"
-	"time"
-
 	"github.com/go-martini/martini"
 	"github.com/martini-contrib/binding"
 	"github.com/martini-contrib/render"
 	"github.com/martini-contrib/sessions"
 	"github.com/martini-contrib/strict"
-<<<<<<< HEAD
 	"html"
 	"html/template"
-	"log"
 	"os"
 	"strings"
 	"time"
-=======
->>>>>>> 0f3d4d518cd6c44ca81818147f09c5f0d162a6bf
 )
 
 func main() {
@@ -43,11 +34,7 @@ func main() {
 	}
 
 	m := martini.Classic()
-<<<<<<< HEAD
-	store := sessions.NewCookieStore([]byte(os.Getenv("vertigo_hash")))
-=======
 	store := sessions.NewCookieStore([]byte(os.Getenv("VG_HASH")))
->>>>>>> 0f3d4d518cd6c44ca81818147f09c5f0d162a6bf
 	m.Use(sessions.Sessions("user", store))
 	m.Use(middleware())
 	m.Use(strict.Strict)
