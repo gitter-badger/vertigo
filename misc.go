@@ -6,24 +6,38 @@ package main
 // So they are basically orphans and heroes at the same time.
 
 import (
-	r "github.com/dancannon/gorethink"
-	"github.com/go-martini/martini"
-	"github.com/martini-contrib/sessions"
+	"log"
 	"net/http"
 	"os"
 	"strings"
 	"time"
+
+	r "github.com/dancannon/gorethink"
+	"github.com/go-martini/martini"
+	"github.com/martini-contrib/sessions"
 )
 
 // Middleware function hooks the RethinkDB to be accessible for Martini routes.
 // By default the middleware spawns a session pool of 10 connections.
-// Typical connection options on development environment would be
-//		Address: "localhost:28015"
-//		Database: "test"
 func middleware() martini.Handler {
+
 	session, err := r.Connect(r.ConnectOpts{
-		Address:     os.Getenv("rDB"),
-		Database:    os.Getenv("rNAME"),
+		Address: os.Getenv("RDB_HOST") + ":" + os.Getenv("RDB_PORT"),
+	})
+
+	r.DbCreate("vertigo").RunRow(session)
+
+	if err != nil {
+		log.Fatalln(err.Error())
+	}
+
+	_, _ = r.Db("vertigo").TableCreate("users").RunWrite(session)
+
+	_, _ = r.Db("vertigo").TableCreate("posts").RunWrite(session)
+
+	session, err = r.Connect(r.ConnectOpts{
+		Address:     os.Getenv("RDB_HOST") + ":" + os.Getenv("RDB_PORT"),
+		Database:    "vertigo",
 		MaxIdle:     10,
 		IdleTimeout: time.Second * 10,
 	})

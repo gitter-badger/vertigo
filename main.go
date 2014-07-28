@@ -1,18 +1,25 @@
 package main
 
 import (
+	"html"
+	"html/template"
+	"os"
+	"time"
+
 	"github.com/go-martini/martini"
 	"github.com/martini-contrib/binding"
-	"github.com/martini-contrib/gzip"
 	"github.com/martini-contrib/render"
 	"github.com/martini-contrib/sessions"
 	"github.com/martini-contrib/strict"
+<<<<<<< HEAD
 	"html"
 	"html/template"
 	"log"
 	"os"
 	"strings"
 	"time"
+=======
+>>>>>>> 0f3d4d518cd6c44ca81818147f09c5f0d162a6bf
 )
 
 func main() {
@@ -36,11 +43,20 @@ func main() {
 	}
 
 	m := martini.Classic()
+<<<<<<< HEAD
 	store := sessions.NewCookieStore([]byte(os.Getenv("vertigo_hash")))
+=======
+	store := sessions.NewCookieStore([]byte(os.Getenv("VG_HASH")))
+>>>>>>> 0f3d4d518cd6c44ca81818147f09c5f0d162a6bf
 	m.Use(sessions.Sessions("user", store))
 	m.Use(middleware())
 	m.Use(strict.Strict)
-	m.Use(gzip.All())
+	m.Use(martini.Static("public", martini.StaticOptions{
+		SkipLogging: true,
+		Expires: func() string {
+			return "Cache-Control: max-age=31536000"
+		},
+	}))
 	m.Use(render.Renderer(render.Options{
 		Layout: "layout",
 		Funcs:  []template.FuncMap{helpers}, // Specify helper function maps for templates to access.
@@ -118,5 +134,4 @@ func main() {
 	m.Router.NotFound(strict.MethodNotAllowed, strict.NotFound)
 	m.Run()
 
-	log.Println("Vertigo started")
 }
